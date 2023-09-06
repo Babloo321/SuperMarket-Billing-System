@@ -15,9 +15,9 @@ class Shopping
     void buyer();
     void add();
     void edit();
-    void remove();
-    void list();
-    void receipt();
+    void rem();
+    void shoppingList();
+    void shoppingReceipt();
 };
 
 void Shopping :: menu()
@@ -226,7 +226,60 @@ void Shopping :: edit()
                 cin>>p;
                 cout << "\n\t\t Discount on the product";
                 cin>>d;
+
+                data1<<"\n" << c << " " << n << " " << p << " " << d;
+                cout << "\n\n\t\t Record edited";
+                token++;
+            }else{
+                data1<<" " << productCode << " " << productName << " " << price << " " << discount;
             }
+            data>>productCode>>productName>>price>>discount;
+        }
+        data.close();
+        data1.close();
+        remove("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt");
+        rename("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database1.txt","C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt");
+        if(token == 0){
+            cout << "\n\n Record not found Sorry!";
         }
     }
+}
+
+void Shopping :: rem()
+{
+    fstream data, data1;
+    int pkey, token= 0;
+    cout << "\n\n\t Delete product";
+    cout << "\n\n\t Enter product code: ";
+    cin >> pkey;
+    data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::in);
+    if(!data){
+        cout << "\nFile doesn't exist";
+    }else{
+        data1.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database1.txt",ios::app | ios::out);
+        data>>productCode>>productName>>price>>discount;
+        while(!data.eof()){
+            if(productCode == pkey){
+                cout << "\n\n\t Product deleted successfully";
+                token++;
+            }else{
+                data1 << " " << productCode << " " << productName << " " << price << " " << discount;
+            }
+            data>>productCode>>productName>>price>>discount;
+        }
+        data.close();
+        data1.close();
+
+        remove("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt");
+        rename("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database1.txt", "C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt");
+
+        if(token == 0){
+            cout << "\n\n Record not be found";
+        }
+    }
+}
+
+void Shopping :: shoppingList()
+{
+    
 }
