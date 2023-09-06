@@ -38,29 +38,35 @@ void Shopping :: menu()
     cout << "\t\t\t\t|  2) Buyer            |\n";
     cout << "\t\t\t\t                        \n";
     cout << "\t\t\t\t|  3) Exit             |\n";
-    cout << "\n\t\t\t   Please Select";
+    cout << "\n\t\t\t   Please Select : ";
     cin >> choice;
 
     switch (choice)
     {
 
     case 1:
-        cout << "\t\t\t Please Login \n";
-        cout << "\t\t\t Enter Email \n";
-        cin >> email;
-        cout << "\t\t\t Enter Password \n";
-        cin >> password;
+        cout << "\t\t\t Please Login \n\n";
+        cout << "\t\t\t Enter Email : ";
+        // cin.get();
+        // getline(cin,email);
+        cin>>email;
+        cout << "\t\t\t Enter Password : ";
+        // cin.get();
+        // getline(cin,password);
+        cin>>password;
         
-        if(email == "robby@gmail.com" && password == "robby@123"){
+        if(email == "nainagupta@gmail.com" && password == "naina"){
             administrator();
-        }else{
-            cout << "Invalid Email/Password";
+        }
+        else{
+            cout << "\n\t\t\tInvalid Email/Password\n\n";
         }
         break;
 
    case 2:
    {
     buyer();
+    break;
    }
 
    case 3:
@@ -105,11 +111,12 @@ void Shopping :: administrator()
         break;
 
         case 3:
-        remove();
+        rem();
         break;
 
         case 4:
         menu();
+        break;
 
         default :
         cout << "Invalid choice!";
@@ -134,15 +141,14 @@ void Shopping :: buyer()
     switch (choice)
     {
         case 1:
-        receipt();
+        shoppingReceipt();
         break;
 
         case 2:
         menu();
-        break;
 
         default:
-        cout << "Invalid choice";
+        cout << "Invalid choice!";
     }
     goto m;
 }
@@ -150,7 +156,7 @@ void Shopping :: buyer()
 void Shopping :: add()
 {
     m:
-    fstream data;
+    fstream data,fout;
     int c;
     int token = 0;
     float p;
@@ -160,46 +166,50 @@ void Shopping :: add()
     cout << "\n\n\t\t\t Add new product";
     cout << "\n\n\t Product code of the product ";
     cin >> productCode;
+    cout << "\n\n\t Name of the Product ";
+    // cin.get();
+    // getline(cin,productName);
+    cin>>productName;
     cout << "\n\n\t Price of the product ";
     cin >> price;
-    cout << "\n\n\t Name of the Product ";
-    cin.get();
-    getline(cin, productName);
     cout << "\n\n\t Discount on the Product ";
     cin >> discount;
 
     data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::in);
-    if(!data){
-        data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::app | ios:: out);
-        data << " " << productCode << " " << productName << " " << price << " " << discount << endl;
-        data.close();
+    if(!data)
+    {
+        fout.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::app | ios::out);
+        fout << " " << productCode << " " << productName << " " << price << " " << discount << "\n";
+        fout.close();
     }
-    else{
+    else
+    {
         data>>c>>n>>p>>d;
-        while(!data.eof()){
-            if(c == productCode){
+        while(!data.eof())
+        {
+            if(c == productCode)
+            {
                 token++;
             }
             data>>c>>n>>p>>d;
         }
         data.close();
-
     if(token == 1)
     goto m;
     else{
-        data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::app | ios:: out);
-        data << " " << productCode << " " << productName << " " << price << " " << discount << endl;
-        data.close();
+        fout.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::app | ios::out);
+        fout << " " << productCode << " " << productName << " " << price << " " << discount << "\n";
+        fout.close();
     }
-    }
-    cout << "\n\n\t\t\t Record Inserted";
+}
+    cout << "\n\n\t\t\t Record Inserted!";
 }
 
 void Shopping :: edit()
 {
     fstream data, data1;
     int pkey;
-    int token;
+    int token = 0;
     int c;
     float p;
     float d;
@@ -220,18 +230,19 @@ void Shopping :: edit()
                 cout << "\n\t\t Product new code";
                 cin>>c;
                 cout << "\n\t\t Name of the product";
-                cin.get();
-                getline(cin, n);
+                // cin.get();
+                // getline(cin, n);
+                cin>>n;
                 cout << "\n\t\t Price of the product";
                 cin>>p;
                 cout << "\n\t\t Discount on the product";
                 cin>>d;
 
-                data1<<"\n" << c << " " << n << " " << p << " " << d;
+                data1<<"\n" << c << " " << n << " " << p << " " << d << "\n";
                 cout << "\n\n\t\t Record edited";
                 token++;
             }else{
-                data1<<" " << productCode << " " << productName << " " << price << " " << discount;
+                data1<<" " << productCode << " " << productName << " " << price << " " << discount << "\n";
             }
             data>>productCode>>productName>>price>>discount;
         }
@@ -248,7 +259,8 @@ void Shopping :: edit()
 void Shopping :: rem()
 {
     fstream data, data1;
-    int pkey, token= 0;
+    int pkey;
+    int token= 0;
     cout << "\n\n\t Delete product";
     cout << "\n\n\t Enter product code: ";
     cin >> pkey;
@@ -262,8 +274,10 @@ void Shopping :: rem()
             if(productCode == pkey){
                 cout << "\n\n\t Product deleted successfully";
                 token++;
-            }else{
-                data1 << " " << productCode << " " << productName << " " << price << " " << discount;
+            }
+            else
+            {
+                data1 << " " << productCode << " " << productName << " " << price << " " << discount << "\n";
             }
             data>>productCode>>productName>>price>>discount;
         }
@@ -281,5 +295,86 @@ void Shopping :: rem()
 
 void Shopping :: shoppingList()
 {
-    
+    ifstream data;
+    data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::in);
+    cout << "\n\n_____________________________________________________________________\n";
+    cout << "P.No\t\tP-Name\t\tP-Price\n";
+    cout << "\n\n_____________________________________________________________________\n";
+    data >> productCode >> productName >> price >> discount;
+    while(!data.eof()){
+        cout << productCode << "\t\t" << productName << "\t\t" << price << "\n";
+        data >> productCode >> productName >> price >> discount;
+    }
+    data.close();
+}
+
+void Shopping :: shoppingReceipt()
+{
+    m:
+    fstream data;
+    int arrCode[100];
+    int arrQuantity[100];
+    char choice;
+    int counter = 0;
+    float amount = 0;
+    float discount = 0;
+    float totalVariable = 0;
+    cout << "\n\n\t\t\t\t RECEIPT";
+    data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt",ios::in);
+    if(!data){
+        cout << "\n\n Empty Database";
+    }else{
+        data.close();
+        shoppingList();
+        cout << "\n______________________________________________________\n";
+        cout << "\n|                                                    |\n";
+        cout << "\n               Please place the order                 \n";
+        cout << "\n|                                                    |\n";
+        cout << "\n______________________________________________________\n";
+
+        do
+        {
+            cout << "\n\n Enter product code : ";
+            cin >> arrCode[counter];
+            cout << "\n\n Enter product quantity : ";
+            cin >> arrQuantity[counter];
+            for(int i = 0; i < counter; i++){
+                if(arrCode[counter] == arrCode[i]){
+                    cout << "\n\n Duplicate product code : Please try again!";
+                    goto m;
+                }
+            }
+            counter++;
+            cout << "\n\n Do you want to buy another product? if yes then press y else n : ";
+            cin >> choice;
+        }
+        while(choice =='y');
+        
+        cout << "\n\n\t\t\t____________________RECEIPT______________________\n";
+        cout << "\nProduct No\t Product Name\t Product Quantity\t Price\t\t Amount\t\tAmount with discount\n";
+
+        for(int i = 0; i < counter; i++){
+            data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt",ios::in);
+            data>>productCode>>productName>>price>>discount;
+            while(!data.eof()){
+                if(productCode == arrCode[i]){
+                    amount = price*arrQuantity[i];
+                    discount = amount - (amount*discount/100);
+                    totalVariable = totalVariable+discount;
+                    cout << "\n"<<productCode<<"\t\t "<<productName<<"\t\t\t"<<arrQuantity[i]<<"\t\t  "<<price<<"\t\t  "<<amount<<"\t\t   "<<discount<<"\n";
+                }
+                data>>productCode>>productName>>price>>discount;
+            }
+        }
+        data.close();
+    }
+    cout << "\n\n____________________________________________________________";
+    cout << "\n\n\t\t\t Total Amount: " << totalVariable <<"\t\t\n";
+}
+
+int main()
+{
+    Shopping s;
+    s.menu();
+    return 0;
 }
