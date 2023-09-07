@@ -1,3 +1,4 @@
 
 1 juice 800 12
  3 bread 1200 25
+ 6 books 300 12

@@ -27,30 +27,30 @@ void Shopping :: menu()
     string email;
     string password;
 
-    cout << "\t\t\t\t_________________________________________\n";
-    cout << "\t\t\t\t                                         \n";
-    cout << "\t\t\t\t           SuperMarket Main Menu         \n";
-    cout << "\t\t\t\t                                         \n";
-    cout << "\t\t\t\t_________________________________________\n";
-    cout << "\t\t\t\t                                         \n";
-    cout << "\t\t\t\t|  1) Administrator    |\n";
-    cout << "\t\t\t\t                        \n";
-    cout << "\t\t\t\t|  2) Buyer            |\n";
-    cout << "\t\t\t\t                        \n";
-    cout << "\t\t\t\t|  3) Exit             |\n";
-    cout << "\n\t\t\t   Please Select : ";
+    cout << "\t\t\t\t\t\t\t_________________________________________\n";
+    cout << "\t\t\t\t\t\t\t                                         \n";
+    cout << "\t\t\t\t\t\t\t           SuperMarket Main Menu         \n";
+    cout << "\t\t\t\t\t\t\t                                         \n";
+    cout << "\t\t\t\t\t\t\t_________________________________________\n";
+    cout << "\t\t\t\t\t\t\t                                         \n";
+    cout << "\t\t\t\t\t\t\t|  1) Administrator    |\n";
+    cout << "\t\t\t\t\t\t\t                        \n";
+    cout << "\t\t\t\t\t\t\t|  2) Buyer            |\n";
+    cout << "\t\t\t\t\t\t\t                        \n";
+    cout << "\t\t\t\t\t\t\t|  3) Exit             |\n";
+    cout << "\n\t\t\t\t\t\t   Please Select : ";
     cin >> choice;
 
     switch (choice)
     {
 
     case 1:
-        cout << "\t\t\t Please Login \n\n";
-        cout << "\t\t\t Enter Email : ";
+        cout << "\t\t\t\t\t\t Please Login \n\n";
+        cout << "\t\t\t\t\t\t Enter Email : ";
         // cin.get();
         // getline(cin,email);
         cin>>email;
-        cout << "\t\t\t Enter Password : ";
+        cout << "\t\t\t\t\t\t Enter Password : ";
         // cin.get();
         // getline(cin,password);
         cin>>password;
@@ -59,7 +59,7 @@ void Shopping :: menu()
             administrator();
         }
         else{
-            cout << "\n\t\t\tInvalid Email/Password\n\n";
+            cout << "\n\t\t\t\t\t\tInvalid Email/Password\n\n";
         }
         break;
 
@@ -76,7 +76,7 @@ void Shopping :: menu()
 
     default:
     {
-        cout << "Please Select the given option like(1,2,3)";
+        cout << "\n\t\t\t\t\t\tPlease Select the given option like(1,2,3)";
     }
     }
 
@@ -85,19 +85,20 @@ void Shopping :: menu()
 
 void Shopping :: administrator()
 {
+    system("color 20");
     m:
     int choice;
-    cout << "\n\n\n\t\t\t Administrator menu \n";
-    cout << "\t\t\t|_____1) Add the product____|\n";
-    cout << "\t\t\t|                           |\n";
-    cout << "\t\t\t|_____2) Modify the product_|\n";
-    cout << "\t\t\t|                           |\n";
-    cout << "\t\t\t|_____3) Delete the product_|\n";
-    cout << "\t\t\t|                           |\n";
-    cout << "\t\t\t|_____4) Back to main menu__|\n";
-    cout << "\t\t\t|                           |\n";
+    cout << "\n\n\n\t\t\t\t\t\t Administrator menu \n";
+    cout << "\t\t\t\t\t\t|_____1) Add the product____|\n";
+    cout << "\t\t\t\t\t\t|                           |\n";
+    cout << "\t\t\t\t\t\t|_____2) Modify the product_|\n";
+    cout << "\t\t\t\t\t\t|                           |\n";
+    cout << "\t\t\t\t\t\t|_____3) Delete the product_|\n";
+    cout << "\t\t\t\t\t\t|                           |\n";
+    cout << "\t\t\t\t\t\t|_____4) Back to main menu__|\n";
+    cout << "\t\t\t\t\t\t|                           |\n";
 
-    cout << "\n\n\t Please Enter Your Choice";
+    cout << "\n\n\t\t\t\t\t Please Enter Your Choice";
     cin >> choice;
 
     switch (choice)
@@ -119,7 +120,7 @@ void Shopping :: administrator()
         break;
 
         default :
-        cout << "Invalid choice!";
+        cout << "\t\t\t\t\t\tInvalid choice!";
     }
     goto m;
 }
@@ -128,14 +129,14 @@ void Shopping :: buyer()
 {
     m:
     int choice;
-    cout << "\t\t\t Buyer \n";
-    cout << "_____________________\n";
+    cout << "\n\t\t\t\t\t\t Buyer \n";
+    cout << "\t\t\t_____________________\n";
     cout << "                     \n";
-    cout << "\t\t\t1) Buy product \n";
-    cout << "                     \n";
-    cout << "\t\t\t2) Go back     \n";
-    cout << "                     \n";
-    cout << "\t\t\t Enter your choice : ";
+    cout << "\t\t\t\t\t\t1) Buy product \n";
+    cout << "\t\t\t                     \n";
+    cout << "\t\t\t\t\t\t2) Go back     \n";
+    cout << "\t\t\t                     \n";
+    cout << "\t\t\t\t\t\t Enter your choice : ";
 
     cin >> choice;
     switch (choice)
@@ -148,13 +149,14 @@ void Shopping :: buyer()
         menu();
 
         default:
-        cout << "Invalid choice!";
+        cout << "\n\t\t\t\t\t\tInvalid choice!";
     }
     goto m;
 }
 
 void Shopping :: add()
 {
+    system("color 40");
     m:
     fstream data,fout;
     int c;
@@ -163,17 +165,19 @@ void Shopping :: add()
     float d;
     string n;
 
-    cout << "\n\n\t\t\t Add new product";
-    cout << "\n\n\t Product code of the product ";
+    cout << "\n\n\t\t\t\t\t\t Add new product";
+    cout << "\n\t\t\t\t\t\t***************************************************";
+    cout << "\n\n\t\t\t\t\t\t Product code of the product ";
     cin >> productCode;
-    cout << "\n\n\t Name of the Product ";
+    cout << "\n\n\t\t\t\t\t\t Name of the Product ";
     // cin.get();
     // getline(cin,productName);
     cin>>productName;
-    cout << "\n\n\t Price of the product ";
+    cout << "\n\n\t\t\t\t\t\t Price of the product ";
     cin >> price;
-    cout << "\n\n\t Discount on the Product ";
+    cout << "\n\n\t\t\t\t\t\t Discount on the Product ";
     cin >> discount;
+    cout << "\n\t\t\t\t\t\t***************************************************";
 
     data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::in);
     if(!data)
@@ -202,11 +206,12 @@ void Shopping :: add()
         fout.close();
     }
 }
-    cout << "\n\n\t\t\t Record Inserted!";
+    cout << "\n\n\t\t\t\t\t\t Record Inserted!";
 }
 
 void Shopping :: edit()
 {
+    system("color 70");
     fstream data, data1;
     int pkey;
     int token = 0;
@@ -214,32 +219,32 @@ void Shopping :: edit()
     float p;
     float d;
     string n;
-    cout << "\n\t\t\t Modify the product";
-    cout << "\n\t\t\t Product code";
+    cout << "\n\t\t\t\t\t\t Modify the product";
+    cout << "\n\t\t\t\t\t\t Product code";
     cin>>pkey;
     data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::in);
     if(!data)
     {
-        cout << "\n\n File doesn't exist!";
+        cout << "\n\n\t\t\t File doesn't exist!";
     }
     else{
         data1.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database1.txt", ios::app | ios::out);
         data>>productCode>>productName>>price>>discount;
         while(!data.eof()){
             if(pkey == productCode){
-                cout << "\n\t\t Product new code";
+                cout << "\n\t\t\t\t\t\t Product new code";
                 cin>>c;
-                cout << "\n\t\t Name of the product";
+                cout << "\n\t\t\t\t\t\t Name of the product";
                 // cin.get();
                 // getline(cin, n);
                 cin>>n;
-                cout << "\n\t\t Price of the product";
+                cout << "\n\t\t\t\t\t\t Price of the product";
                 cin>>p;
-                cout << "\n\t\t Discount on the product";
+                cout << "\n\t\t\t\t\t\t Discount on the product";
                 cin>>d;
 
                 data1<<"\n" << c << " " << n << " " << p << " " << d << "\n";
-                cout << "\n\n\t\t Record edited";
+                cout << "\n\n\t\t\t\t\t\t Record edited";
                 token++;
             }else{
                 data1<<" " << productCode << " " << productName << " " << price << " " << discount << "\n";
@@ -251,7 +256,7 @@ void Shopping :: edit()
         remove("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt");
         rename("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database1.txt","C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt");
         if(token == 0){
-            cout << "\n\n Record not found Sorry!";
+            cout << "\n\n\t\t\t\t\t\t Record not found Sorry!";
         }
     }
 }
@@ -261,18 +266,18 @@ void Shopping :: rem()
     fstream data, data1;
     int pkey;
     int token= 0;
-    cout << "\n\n\t Delete product";
-    cout << "\n\n\t Enter product code: ";
+    cout << "\n\n\t\t\t\t\t\t Delete product";
+    cout << "\n\n\t\t\t\t\t\t Enter product code: ";
     cin >> pkey;
     data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::in);
     if(!data){
-        cout << "\nFile doesn't exist";
+        cout << "\n\t\t\t\t\t\tFile doesn't exist";
     }else{
         data1.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database1.txt",ios::app | ios::out);
         data>>productCode>>productName>>price>>discount;
         while(!data.eof()){
             if(productCode == pkey){
-                cout << "\n\n\t Product deleted successfully";
+                cout << "\n\n\t\t\t\t\t\t Product deleted successfully";
                 token++;
             }
             else
@@ -288,13 +293,14 @@ void Shopping :: rem()
         rename("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database1.txt", "C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt");
 
         if(token == 0){
-            cout << "\n\n Record not be found";
+            cout << "\n\n\t\t\t\t\t\t Record not be found";
         }
     }
 }
 
 void Shopping :: shoppingList()
 {
+    system("color 80");
     ifstream data;
     data.open("C:/Users/Babloo/Desktop/SuperMarketBilingSystem/database.txt", ios::in);
     cout << "\n\n_____________________________________________________________________\n";
@@ -310,6 +316,7 @@ void Shopping :: shoppingList()
 
 void Shopping :: shoppingReceipt()
 {
+    system("color 90");
     m:
     fstream data;
     int arrCode[100];
@@ -374,6 +381,7 @@ void Shopping :: shoppingReceipt()
 
 int main()
 {
+    system("color 60");
     Shopping s;
     s.menu();
     return 0;
